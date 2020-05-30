@@ -96,4 +96,4 @@ def yield_tree_information(tree_file_name):
 
 
 if __name__ == "__main__":
-    generate_user_graph()
+    get_labels()
