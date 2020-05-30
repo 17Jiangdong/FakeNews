@@ -8,7 +8,6 @@ def get_labels(dumps_dir="rumor_detection_acl2017", dataset="twitter15"):
         for line in label_file.readlines():
             label, tweet_id = line.split(":")
             labels[int(tweet_id)] = label
-    print(labels)
     return labels
 
 
