@@ -12,7 +12,7 @@ from text_preprocessing import preprocess_tweets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-DATA_DIR = "/content/rumor_detection_acl2017"
+DATA_DIR = "rumor_detection_acl2017"
 
 import basic_tests
 
