@@ -4,6 +4,7 @@ import time
 from collections import defaultdict
 
 import numpy as np
+import pandas as pd
 import torch
 
 import utils
@@ -175,13 +176,32 @@ class DatasetBuilder:
         tweet_features = {}
 
         text_embeddings = np.load("rumor_detection_acl2017/output_bert.npy")
+        # !pip install transformers
+        # import tensorflow as tf
+        # from transformers import BertTokenizer, TFBertModel
+        # from transformers import XLMRobertaModel, XLMRobertaTokenizer
+        # tokenizer = XLMRobertaTokenizer.from_pretrained('xlm-roberta-base')
+        # model = XLMRobertaModel.from_pretrained('xlm-roberta-base')
+        # result = []
+        # i = 0
+        # for _ in data.text:
+        # input_ids = torch.tensor([tokenizer.encode(_, add_special_tokens=True)])[:,:512]
+        # print(input_ids)
+        # with torch.no_grad():
+        #     outputs = model(input_ids)[1].tolist()
+        # result.append(outputs)
+        # i += 1
+        # print(i)
+        # np.save('output_bert.npy', result)
         
         with open(os.path.join(DATA_DIR, "tweet_features.txt")) as text_file:
             # first line contains column names
             self.tweet_feature_names = text_file.readline().rstrip('\n').split(';')
-            for i, line in enumerate(text_file.readlines()):
-                features = line.rstrip('\n').split(";")
-                tweet_features[int(features[0])] = {"embedding":text_embeddings[i]}
+
+        tweet_features_id = pd.read_csv("rumor_detection_acl2017/tweet_features.txt",
+                   delimiter=';',names=None).id
+        for i, tweet_id in enumerate(tweet_features_id):
+            tweet_features[int(tweet_id)] = {"embedding":text_embeddings[i]}
 
         return tweet_features
 

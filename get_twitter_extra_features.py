@@ -10,20 +10,25 @@ from tqdm import tqdm
 
 #### GETTING CREDENTIALS
 
-with open("credentials.txt") as f:
-    consumer_key = f.readline()[:-1] # [:-1] to remove the '\n'
-    consumer_secret = f.readline()[:-1]
-    oauth_token = f.readline()[:-1]
-    oauth_token_secret = f.readline()[:-1]
+oauth_token = "819946686453846018-ZKg3GhH3YZXJoA7SFuS28n5vlsHXIxq"
+oauth_token_secret = "5jJRAPVlRhZv6m6w87NFLtLgu2lSCaezjPGt5oNjQ2STB"
+consumer_key = "85XS34vI635oIDKYP91DatPLA"
+consumer_secret = "WY25ym8LZCVZKD0aquNPuHMs4O5u6wj9bQKGnCFMjpDoNPP94L"
+
+# with open("credentials.txt") as f:
+#     consumer_key = f.readline()[:-1] # [:-1] to remove the '\n'
+#     consumer_secret = f.readline()[:-1]
+#     oauth_token = f.readline()[:-1]
+#     oauth_token_secret = f.readline()[:-1]
 
 #### GET ALL USER/POST IDS OF TWITTER15/16 
-
+print(1)
 files_tree = []
 paths_folder = ['rumor_detection_acl2017/twitter15/tree', 'rumor_detection_acl2017/twitter16/tree']
 
 for path_folder in paths_folder:
     files_tree += [join(path_folder, f) for f in listdir(path_folder) if isfile(join(path_folder, f))]
-    
+print(2)    
 list_user_post = [] #will contain all tuples (user, post)
 
 for file_name in files_tree:
@@ -33,10 +38,10 @@ for file_name in files_tree:
             line_split = line.split("'")
             list_user_post_file.append((line_split[1], line_split[3]))
             list_user_post_file.append((line_split[7], line_split[9]))
-            
+            print(line)
     list_user_post.extend(list(set(list_user_post_file)))
 
-
+print(4)
 all_users = list(set([elt[0] for elt in list_user_post]))
 all_posts = list(set([elt[1] for elt in list_user_post]))
 all_users.sort()
