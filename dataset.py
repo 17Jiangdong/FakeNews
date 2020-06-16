@@ -18,7 +18,7 @@ DATA_DIR = "rumor_detection_acl2017"
 import basic_tests
 
 
-# change
+
 class DatasetBuilder:
 
     def __init__(
