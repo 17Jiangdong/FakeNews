@@ -5,7 +5,6 @@ import torch_geometric
 import torch_geometric.nn as pyg_nn
 from torch_geometric.nn import GCNConv
 
-
 class FirstNet(torch.nn.Module):
     def __init__(self, num_node_features, num_classes):
         super(FirstNet, self).__init__()
